@@ -26,10 +26,29 @@
 
 namespace Configurationally
 {
+    using NUnit.Framework;
+
     /// <summary>
-    /// Represents a setting
+    ///     Represents unit tests for <see cref="ConfigurationManager" />
     /// </summary>
-    public class Setting
+    [TestFixture]
+    public class ConfigurationManagerTests
     {
+        /// <summary>
+        ///     Verifies <see cref="ConfigurationManager.GetCurrentConfiguration" />
+        /// </summary>
+        [Test]
+        public void GetCurrentConfiguration()
+        {
+            // Arrange
+            IConfigurationManager target = new ConfigurationManager();
+
+            // Act
+            IConfiguration actual = target.GetCurrentConfiguration();
+
+            // Assert
+            Assert.IsNotNull(actual, "ConfigurationManager.GetCurrentConfiguration returned null");
+            Assert.IsInstanceOf<NullConfiguration>(actual, "ConfigurationManager.GetCurrentConfiguration returned the incorrect type");
+        }
     }
 }

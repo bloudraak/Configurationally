@@ -26,29 +26,15 @@
 
 namespace Configurationally
 {
-    using System.Collections.Generic;
-
     /// <summary>
-    ///     Represents a setting manager
+    ///     Represents a configuration manager
     /// </summary>
-    public class SettingManager
+    public interface IConfigurationManager
     {
-        private readonly ICollection<Setting> _settings;
-
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:System.Object" /> class.
+        ///     Gets the current configuration
         /// </summary>
-        public SettingManager()
-        {
-            _settings = new HashSet<Setting>();
-        }
-
-        /// <summary>
-        ///     Gets a list of settings
-        /// </summary>
-        public IEnumerable<Setting> Settings
-        {
-            get { return _settings; }
-        }
+        /// <returns>An instance of <see cref="Configuration" /></returns>
+        IConfiguration GetCurrentConfiguration();
     }
 }

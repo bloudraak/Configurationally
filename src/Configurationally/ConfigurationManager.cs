@@ -26,29 +26,22 @@
 
 namespace Configurationally
 {
-    using NUnit.Framework;
+    using System.Diagnostics.Contracts;
 
     /// <summary>
-    /// Represents unit tests for <see cref="SettingManager"/>
+    ///     Represents a configuration manager
     /// </summary>
-    [TestFixture]
-    public class SettingManagerTests
+    public class ConfigurationManager : IConfigurationManager
     {
         /// <summary>
-        /// Verifies the default constructor of <see cref="SettingManager"/>
+        ///     Gets the current configuration
         /// </summary>
-        [Test]
-        public void Settings()
+        /// <returns>An instance of <see cref="Configuration" /></returns>
+        public IConfiguration GetCurrentConfiguration()
         {
-            // Arrange
-            SettingManager target;
+            Contract.Ensures(Contract.Result<IConfiguration>() != null);
 
-            // Act
-            target = new SettingManager();
-
-            // Assert
-            Assert.IsNotNull(target.Settings, "The default constructor did not initialize the settings collection");
-            Assert.IsEmpty(target.Settings, "The default constructor added settings, which is not expected");
+            return new NullConfiguration();
         }
     }
 }
